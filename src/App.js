@@ -1,6 +1,6 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import Formulario from './components/Formulario';
-import Cita from './components/Cita';
+import React, { Fragment, useState, useEffect } from "react";
+import Formulario from "./components/Formulario";
+import Cita from "./components/Cita";
 
 function App() {
   // creamos un state con un arreglo de citas, que inicia vacío
@@ -13,6 +13,15 @@ function App() {
       cita, //le añadimos la cita nueva
     ]);
   };
+  //Función de eliminar cita por ID:
+
+  const eliminarCita = (id) => {
+    const nuevasCitas = citas.filter((cita) => cita.id !== id); //aqui es diferente al id porque selecciona un id determinado y se olvida los demas
+    guardarCitas(nuevasCitas);
+  };
+
+  //mensaje condicional
+  const titulo = citas.length === 0 ? "No hay Citas" : "Administra tus Citas";
 
   return (
     <Fragment>
@@ -24,12 +33,9 @@ function App() {
           </div>
 
           <div className="one-half column">
-            <h2>Administra tus citas</h2>
-            {citas.map(cita => (
-              <Cita
-              key={cita.id}
-              cita={cita} 
-              />
+            <h2>{titulo}</h2>
+            {citas.map((cita) => (
+              <Cita key={cita.id} cita={cita} eliminarCita={eliminarCita} />
             ))}
           </div>
         </div>
