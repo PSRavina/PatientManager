@@ -13,6 +13,12 @@ function App() {
       cita, //le añadimos la cita nueva
     ]);
   };
+
+//useEffect  para realizar acciones cuando el state cambia. Entre corchetes va, cuando se ejecuta,(el state que cambia)
+//siempre un arrow function porque espera a que cambie
+
+useEffect(()=>{},[citas])
+
   //Función de eliminar cita por ID:
 
   const eliminarCita = (id) => {
